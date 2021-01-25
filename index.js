@@ -58,6 +58,10 @@ async function handleMessage(msg) {
       }
       return;
 
+    case "HELP":
+      msg.channel.send({ embed: commands.help() });
+      return;
+
     default:
       msg.channel.send("Haven't done this yet, meow.");
       return;
