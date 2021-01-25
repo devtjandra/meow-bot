@@ -1,0 +1,16 @@
+{
+  "name": "meow-bot",
+  "version": "1.0.0",
+  "description": "Meow Bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Devina Tjandra",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "discord.js": "^11.5.1",
+    "dotenv": "^8.2.0"
+  }
+}
