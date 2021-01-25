@@ -31,7 +31,8 @@ async function handleMessage(msg) {
     case "FACT":
     case "FACTS":
       msg.channel.send("Getting a cat fact, brb.");
-      commands.facts(msg);
+      const fact = await commands.facts(msg);
+      msg.channel.send(commands.formatCute(fact));
       return;
 
     case "PIC":
@@ -39,7 +40,8 @@ async function handleMessage(msg) {
     case "PIX":
     case "PICTURE":
       msg.channel.send("Getting a cat pic, brb.");
-      commands.pics(msg);
+      const pic = await commands.pics(msg);
+      msg.channel.send("Here's a cat pic for you!", { files: [pic] });
       return;
 
     case "BREED":

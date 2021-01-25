@@ -1,35 +1,23 @@
 const axios = require("axios");
 require("dotenv").config();
+const THE_CAT_API_KEY = process.env.THE_CAT_API_KEY;
 
-function facts(msg) {
-  axios
-    .get("https://catfact.ninja/facts")
-    .then((response) => {
-      console.info(response.data);
-      const fact = response.data.data[0].fact;
-      msg.channel.send("=^.^=\n" + fact);
-      return;
-    })
-    .catch((error) => {
-      console.info(error);
-      return;
-    });
+function facts() {
+  return new Promise(async (resolve, reject) => {
+    response = await axios.get("https://catfact.ninja/facts");
+    resolve(response.data.data[0].fact);
+  });
 }
 
-function pics(msg) {
-  axios
+function pics() {
+  return new Promise(async (resolve, reject) => {
+    response = await axios
     .get(
       "https://api.thecatapi.com/v1/images/search?api_key=" + THE_CAT_API_KEY
-    )
-    .then((response) => {
-      const image = response.data[0].url;
-      msg.channel.send("=^.^=", { files: [image] });
-      return;
-    })
-    .catch((error) => {
-      console.info(error);
-      return;
-    });
+    );
+    const image = response.data[0].url;
+    resolve(image);
+  });
 }
 
 function breeds(msg, words) {
