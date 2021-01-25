@@ -6,18 +6,21 @@ const commands = require("./commands/index");
 
 bot.login(TOKEN);
 
-bot.on("message", (msg) => {
+bot.on("message", async (msg) => {
   const words = msg.content.split(" ");
 
   if (msg.author.bot) return;
-  if (words.size === 0) return;
+  if (words.length === 0) return;
 
   if (words[0] !== "!meow") {
-    commands.react(words).then((response) => msg.react(response));
+    await commands
+      .react(words)
+      .then((response) => msg.react(response))
+      .catch((error) => {});
     return;
   }
 
-  if (words.size === 1) {
+  if (words.length === 1) {
     msg.channel.send("Meow what?");
     return;
   }
