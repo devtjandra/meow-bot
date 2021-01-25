@@ -16,7 +16,7 @@ function react(words) {
           break;
         case "MEOW":
         case "MEONG":
-          responses.pushlve("🙀");
+          responses.push("🙀");
           break;
         case "KITTY":
           responses.push("😾");
