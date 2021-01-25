@@ -4,6 +4,9 @@ function react(words) {
     words.forEach((word) => {
       switch (word.toUpperCase()) {
         case "CAT":
+        case "CATS":
+        case "KUCING":
+        case "KOCHENG":
           responses.push("😽");
           break;
         case "PUSSY":
@@ -12,6 +15,7 @@ function react(words) {
           responses.push("😼");
           break;
         case "KITTEN":
+        case "KITTENS":
           responses.push("😻");
           break;
         case "MEOW":
@@ -19,6 +23,7 @@ function react(words) {
           responses.push("🙀");
           break;
         case "KITTY":
+        case "KITTIES":
           responses.push("😾");
           break;
         default:
