@@ -47,7 +47,15 @@ async function handleMessage(msg) {
     case "BREED":
     case "BREEDS":
       msg.channel.send("Looking up the kitty, be pawtient.");
-      commands.breeds(msg, words);
+      const breed = await commands
+        .breeds(words)
+        .catch((error) => msg.channel.send(error));
+
+      if (breed.image === null) {
+        msg.channel.send({ embed: breed.message });
+      } else {
+        msg.channel.send({ embed: breed.message, files: [breed.image] });
+      }
       return;
 
     default:
