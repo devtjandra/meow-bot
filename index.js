@@ -6,17 +6,19 @@ const commands = require("./commands/index");
 
 bot.login(TOKEN);
 
-bot.on("message", async (msg) => {
+bot.on("message", (msg) => handleMessage(msg));
+
+async function handleMessage(msg) {
   const words = msg.content.split(" ");
 
   if (msg.author.bot) return;
   if (words.length === 0) return;
 
   if (words[0] !== "!meow") {
-    await commands
-      .react(words)
-      .then((response) => msg.react(response))
-      .catch((error) => {});
+    const response = await commands.react(words);
+    response.forEach((element) => {
+      msg.react(element);
+    });
     return;
   }
 
@@ -30,7 +32,7 @@ bot.on("message", async (msg) => {
     case "FACTS":
       msg.channel.send("Getting a cat fact, brb.");
       commands.facts(msg);
-      break;
+      return;
 
     case "PIC":
     case "PICS":
@@ -38,16 +40,16 @@ bot.on("message", async (msg) => {
     case "PICTURE":
       msg.channel.send("Getting a cat pic, brb.");
       commands.pics(msg);
-      break;
+      return;
 
     case "BREED":
     case "BREEDS":
       msg.channel.send("Looking up the kitty, be pawtient.");
       commands.breeds(msg, words);
-      break;
+      return;
 
     default:
       msg.channel.send("Haven't done this yet, meow.");
-      break;
+      return;
   }
-});
+}

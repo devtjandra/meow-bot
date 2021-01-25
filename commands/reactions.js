@@ -1,30 +1,31 @@
 function react(words) {
   return new Promise(function (resolve, reject) {
+    var responses = [];
     words.forEach((word) => {
       switch (word.toUpperCase()) {
         case "CAT":
-          resolve("😽");
+          responses.push("😽");
           break;
         case "PUSSY":
         case "PUSSEH":
         case "PUSS":
-          resolve("😼");
+          responses.push("😼");
           break;
         case "KITTEN":
-          resolve("😻");
+          responses.push("😻");
           break;
         case "MEOW":
         case "MEONG":
-          resolve("🙀");
+          responses.pushlve("🙀");
           break;
         case "KITTY":
-          resolve("😾");
+          responses.push("😾");
           break;
         default:
-          reject();
           break;
       }
     });
+    if (responses.length > 0) resolve(responses);
     return;
   });
 }
